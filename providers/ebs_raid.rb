@@ -31,6 +31,7 @@ action :auto_attach do
                       @new_resource.level,
                       @new_resource.filesystem,
                       @new_resource.filesystem_options,
+		      @new_resource.encrypted,
                       @new_resource.snapshots,
                       @new_resource.disk_type,
                       @new_resource.disk_piops,
@@ -328,7 +329,7 @@ end
 #              If it's not nil, must have exactly <num_disks> elements
 
 def create_raid_disks(mount_point, mount_point_owner, mount_point_group, mount_point_mode, num_disks, disk_size,
-                      level, filesystem, filesystem_options, snapshots, disk_type, disk_piops, existing_raid)
+                      level, filesystem, filesystem_options, encrypted, snapshots, disk_type, disk_piops, existing_raid)
 
   creating_from_snapshot = !(snapshots.nil? || snapshots.size == 0)
 
@@ -351,6 +352,7 @@ def create_raid_disks(mount_point, mount_point_owner, mount_point_group, mount_p
 	 size disk_size
 	 volume_type disk_type
 	 piops disk_piops
+	 encrypted encrypted
 	 device "/dev/#{disk_dev_path}"
 	 name disk_dev_path
 	 action [:create, :attach]
@@ -370,6 +372,7 @@ def create_raid_disks(mount_point, mount_point_owner, mount_point_group, mount_p
 	 size disk_size
 	 volume_type disk_type
 	 piops disk_piops
+	 encrypted encrypted
 	 device "/dev/#{disk_dev_path}"
 	 name disk_dev_path
 	 action [:create, :attach]

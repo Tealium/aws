@@ -9,6 +9,7 @@ state_attrs :aws_access_key,
             :disk_type,
             :filesystem,
             :filesystem_options,
+	    :encrypted,
             :level,
             :mount_point,
             :mount_point_group,
@@ -28,6 +29,7 @@ attribute :disk_size,             kind_of: Integer
 attribute :level,                 default: 10
 attribute :filesystem,            default: 'ext4'
 attribute :filesystem_options,    default: 'rw,noatime,nobootwait'
+attribute :encrypted,             kind_of: [TrueClass, FalseClass], default: false
 attribute :snapshots,             default: []
 attribute :disk_type,             kind_of: String, default: 'standard'
 attribute :disk_piops,            kind_of: Integer, default: 0
