@@ -185,7 +185,7 @@ def create_volume(snapshot_id, size, availability_zone, timeout, volume_type, pi
   begin
     Timeout.timeout(timeout) do
       loop do
-        sleep 5
+        sleep 15
         vol = volume_by_id(nv[:volume_id])
         if vol && vol[:state] != 'deleting'
           if ['in-use', 'available'].include?(vol[:state])
